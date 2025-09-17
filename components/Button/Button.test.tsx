@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
+
 import { Button } from "./Button"
 
 describe("Button", () => {
@@ -8,25 +9,29 @@ describe("Button", () => {
     expect(screen.getByText("Click me")).toBeInTheDocument()
   })
 
-  it("applies correct intent classes", () => {
+  it("applies creamy secondary styling", () => {
     const { container } = render(
       <Button href="/test" intent="secondary">
         Secondary
-      </Button>
+      </Button>,
     )
     const link = container.querySelector("a")
-    expect(link).toHaveClass("bg-transparent")
-    expect(link).toHaveClass("text-blue-400")
+    expect(link).not.toBeNull()
+    const className = link?.className ?? ""
+    expect(className).toContain("bg-white/70")
+    expect(className).toContain("text-[#b6662b]")
   })
 
-  it("applies correct size classes", () => {
+  it("applies compact size classes", () => {
     const { container } = render(
       <Button href="/test" size="sm">
         Small
-      </Button>
+      </Button>,
     )
     const link = container.querySelector("a")
-    expect(link).toHaveClass("text-sm")
-    expect(link).toHaveClass("min-w-20")
+    expect(link).not.toBeNull()
+    const className = link?.className ?? ""
+    expect(className).toContain("text-xs")
+    expect(className).toContain("min-w-24")
   })
 })
