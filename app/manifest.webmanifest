@@ -1,0 +1,24 @@
+﻿{
+  "name": "Guinea Pig Care",
+  "short_name": "Guinea Care",
+  "description": "Interactive, evidence-backed guides for guinea pig guardians covering nutrition, habitat, health, enrichment, and adoption.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#f5f5f5",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

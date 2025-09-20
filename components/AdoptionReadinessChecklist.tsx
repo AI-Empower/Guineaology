@@ -1,0 +1,142 @@
+"use client"
+
+import { useMemo, useState } from "react"
+
+type ChecklistItem = {
+  id: string
+  title: string
+  description: string
+  category: string
+}
+
+const items: ChecklistItem[] = [
+  {
+    id: "vet",
+    title: "Book an exotic vet intake",
+    description: "Schedule an initial wellness exam within 7–10 days of adoption and confirm after-hours care options.",
+    category: "Health",
+  },
+  {
+    id: "habitat",
+    title: "Prepare a 7.5+ sq ft habitat",
+    description: "Assemble the enclosure, line bedding, and set up at least two hay and water stations before pigs arrive.",
+    category: "Environment",
+  },
+  {
+    id: "diet",
+    title: "Stock staple foods",
+    description: "Purchase unlimited grass hay, plain timothy pellets, and a variety of leafy greens for the first two weeks.",
+    category: "Nutrition",
+  },
+  {
+    id: "quarantine",
+    title: "Plan a quarantine zone",
+    description: "Keep new pigs separate from existing herds for 2–3 weeks to monitor health and prevent disease spread.",
+    category: "Health",
+  },
+  {
+    id: "rescue",
+    title: "Choose a reputable rescue",
+    description: "Work with organisations that provide vet checks, require paired adoptions, and offer return support.",
+    category: "Community",
+  },
+  {
+    id: "bonding",
+    title: "Study bonding protocols",
+    description: "Learn neutral-territory bonding steps and signs of escalating aggression before introductions.",
+    category: "Behaviour",
+  },
+  {
+    id: "transport",
+    title: "Set up safe transport",
+    description: "Line a hard-sided carrier with absorbent bedding and pre-pack hay, veggies, and a spare fleece.",
+    category: "Logistics",
+  },
+  {
+    id: "budget",
+    title: "Create a care budget",
+    description: "Plan for monthly bedding and food plus an emergency vet fund covering at least one urgent visit.",
+    category: "Planning",
+  },
+]
+
+export function AdoptionReadinessChecklist() {
+  const [completed, setCompleted] = useState<Set<string>>(new Set())
+
+  const completion = useMemo(() => {
+    const total = items.length
+    const done = completed.size
+    return {
+      total,
+      done,
+      percent: Math.round((done / total) * 100),
+    }
+  }, [completed])
+
+  const toggleItem = (id: string) => {
+    setCompleted((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="rounded-[2.5rem] border border-subtle bg-surface px-6 py-6 shadow-soft sm:px-8 sm:py-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-soft">Readiness tracker</p>
+            <h3 className="mt-2 font-display text-2xl font-semibold text-heading">{completion.percent}% ready for adoption day</h3>
+          </div>
+          <div className="rounded-full border border-subtle bg-surface-muted px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-soft">
+            {completion.done} / {completion.total} tasks complete
+          </div>
+        </div>
+        <div className="mt-6 h-3 w-full rounded-full bg-surface-muted">
+          <div
+            className="h-full rounded-full bg-[color:var(--color-accent)] transition-all duration-500"
+            style={{ width: `${completion.percent}%` }}
+          />
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        {items.map((item) => {
+          const isChecked = completed.has(item.id)
+          const baseClasses =
+            "group flex flex-col gap-3 rounded-3xl border px-5 py-5 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--color-accent)]"
+          const activeClasses = " border-strong bg-surface text-heading shadow-soft"
+          const inactiveClasses = " border-subtle bg-surface-muted text-primary hover:border-strong hover:bg-surface"
+
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => toggleItem(item.id)}
+              className={baseClasses + (isChecked ? " " + activeClasses : " " + inactiveClasses)}
+            >
+              <div className="flex items-center justify-between">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-soft">{item.category}</p>
+                <span
+                  className={`inline-flex size-8 items-center justify-center rounded-full border text-lg font-semibold transition ${
+                    isChecked ? "border-strong bg-accent-soft text-accent" : "border-subtle bg-surface text-soft"
+                  }`}
+                  aria-hidden
+                >
+                  {isChecked ? "✓" : ""}
+                </span>
+              </div>
+              <p className="text-lg font-semibold text-heading">{item.title}</p>
+              <p className="text-sm leading-relaxed text-primary">{item.description}</p>
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
