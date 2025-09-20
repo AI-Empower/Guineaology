@@ -1,11 +1,4 @@
 import "styles/tailwind.css"
-<<<<<<< Updated upstream
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-=======
 import type { Metadata } from "next"
 import { Inter, Plus_Jakarta_Sans } from "next/font/google"
 import Script from "next/script"
@@ -163,7 +156,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </ThemeProvider>
       </body>
->>>>>>> Stashed changes
     </html>
   )
 }

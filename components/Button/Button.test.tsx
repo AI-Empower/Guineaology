@@ -8,26 +8,17 @@ describe("Button", () => {
     expect(screen.getByText("Click me")).toBeInTheDocument()
   })
 
-<<<<<<< Updated upstream
-  it("applies correct intent classes", () => {
-=======
   it("applies secondary styling tokens", () => {
->>>>>>> Stashed changes
     const { container } = render(
       <Button href="/test" intent="secondary">
         Secondary
       </Button>
     )
     const link = container.querySelector("a")
-<<<<<<< Updated upstream
-    expect(link).toHaveClass("bg-transparent")
-    expect(link).toHaveClass("text-blue-400")
-=======
     expect(link).not.toBeNull()
     const className = link?.className ?? ""
     expect(className).toContain("bg-surface")
     expect(className).toContain("border-subtle")
->>>>>>> Stashed changes
   })
 
   it("applies correct size classes", () => {
@@ -37,14 +28,10 @@ describe("Button", () => {
       </Button>
     )
     const link = container.querySelector("a")
-<<<<<<< Updated upstream
-    expect(link).toHaveClass("text-sm")
-    expect(link).toHaveClass("min-w-20")
-=======
     expect(link).not.toBeNull()
     const className = link?.className ?? ""
     expect(className).toContain("min-w-20")
     expect(className).toContain("text-[0.68rem]")
->>>>>>> Stashed changes
   })
 })
+

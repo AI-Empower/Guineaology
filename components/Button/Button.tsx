@@ -7,14 +7,6 @@ const button = cva(
   [
     "inline-flex",
     "items-center",
-<<<<<<< Updated upstream
-    "rounded-xl",
-    "text-center",
-    "border",
-    "border-blue-400",
-    "transition-colors",
-    "delay-50",
-=======
     "justify-center",
     "rounded-full",
     "border",
@@ -31,19 +23,10 @@ const button = cva(
     "focus-visible:outline-offset-2",
     "disabled:pointer-events-none",
     "disabled:opacity-60",
->>>>>>> Stashed changes
   ],
   {
     variants: {
       intent: {
-<<<<<<< Updated upstream
-        primary: ["bg-blue-400", "text-white", "hover:enabled:bg-blue-700"],
-        secondary: ["bg-transparent", "text-blue-400", "hover:enabled:bg-blue-400", "hover:enabled:text-white"],
-      },
-      size: {
-        sm: ["min-w-20", "h-full", "min-h-10", "text-sm", "py-1.5", "px-4"],
-        lg: ["min-w-32", "h-full", "min-h-12", "text-lg", "py-2.5", "px-6"],
-=======
         primary: [
           "border-[color:var(--color-accent)]",
           "bg-accent-soft",
@@ -74,7 +57,6 @@ const button = cva(
       size: {
         sm: ["min-w-20", "px-4", "py-2.5", "text-[0.68rem]"],
         lg: ["min-w-36", "py-3", "text-xs", "md:text-sm"],
->>>>>>> Stashed changes
       },
       underline: { true: ["underline", "underline-offset-4"], false: [] },
     },
@@ -97,3 +79,4 @@ export function Button({ className, intent, size, underline, ...props }: ButtonP
     </a>
   )
 }
+
