@@ -132,6 +132,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${body.variable} ${display.variable}`} data-theme="light" suppressHydrationWarning>
       <body className="min-h-screen bg-app text-primary antialiased">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-44NL6BCE9J" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-44NL6BCE9J');
+          `}
+        </Script>
         <Script id="site-structured-data" type="application/ld+json" strategy="beforeInteractive">
           {structuredData}
         </Script>
